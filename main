@@ -1,0 +1,70 @@
+import random
+
+options = ('piedra', 'papel', 'tijera')
+computer_wins = 0
+user_wins = 0
+rounds = 1 
+
+print('Bienvenido al juego de piedra, papel o tijera. Para jugar debes elegir el número de rondas a jugar (Debe ser número impar). Posteriormente elegir una de las opciones que te pedimos. Juegas contra mí, que gane el mejor!')
+while True:
+  total_rounds = int(input('Elige el número de rondas a jugar => '))
+  if total_rounds % 2 == 0:
+    print('Elige un número impar')
+    continue
+  elif total_rounds > 9:
+    print('Elige un número menor a 10')
+    continue
+  else:
+    break
+
+while True:
+  
+  print('*' * 10)
+  print('ROUND ', rounds)
+  print('*' * 10)
+
+  print(f'El resultado hasta el momento es computadora  {computer_wins} usuario {user_wins}')
+  
+  user_option = input('Piedra, papel o tijera => ').lower()
+  if user_option not in options:
+    print('Esa opción no es válida')
+    continue
+  computer_option = random.choice(options).lower()
+    
+
+  print('User option => ', user_option)
+  print('Computer option => ', computer_option)
+
+  if user_option == computer_option:
+    print('Empate')
+  elif user_option == 'piedra':
+    if computer_option == 'tijera':
+      print('Ganaste')
+      user_wins += 1
+    else:
+      print('Perdiste')
+      computer_wins += 1
+  elif user_option == 'papel':
+    if computer_option == 'piedra':
+      print('Ganaste')
+      user_wins += 1
+    else:
+      print('Perdiste')
+      computer_wins += 1
+  elif user_option == 'tijera': 
+    if computer_option == 'papel':
+      print('Ganaste')
+      user_wins += 1
+    else:
+      print('Perdiste')
+      computer_wins += 1
+  if computer_wins == float((total_rounds / 2)) + 0.5:
+    print(f'La computadora ganó, eres tronco. El resultado fue {user_wins} a {computer_wins}')
+    break
+
+  if user_wins == float((total_rounds / 2)) + 0.5:
+    print(f'Ganaste, eres un crack. El resultado fue {user_wins} a {computer_wins}')
+    break
+  
+  rounds += 1
+  
